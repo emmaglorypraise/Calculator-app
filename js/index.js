@@ -16,7 +16,6 @@ if (currentValue < 0 || currentValue === 0 ) {
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
-        console.log(button.innerText)
         let number = button.innerText;
         appendNumber(number)
     })
@@ -27,15 +26,11 @@ function appendNumber(number) {
     if (number === '.' && currentValue.includes('.')) return
     currentValue += number;
     calculatorValue.innerHTML = currentValue ;
-    console.log(currentValue)
 }
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => {
-        console.log(button.innerText)
         let operator = button.innerText;
-        console.log(previousValue)
-        console.log(currentValue)
 
         switch(operator) {
             case '+':
@@ -44,7 +39,6 @@ operatorButtons.forEach(button => {
             calculatorValue.innerHTML = operator;
             calculator.push(operator);
             currentValue = '';
-            console.log(calculator);
             break
             case '-':
             previousValue = currentValue;
@@ -52,7 +46,6 @@ operatorButtons.forEach(button => {
             calculatorValue.innerHTML = operator;
             calculator.push(operator);
             currentValue = '';
-            console.log(calculator);
             break
             case '/':
             previousValue = currentValue;
@@ -60,7 +53,6 @@ operatorButtons.forEach(button => {
             calculatorValue.innerHTML = operator;
             calculator.push(operator);
             currentValue = '';
-            console.log(calculator);
             break
             case '*':
             previousValue = currentValue;
@@ -68,7 +60,6 @@ operatorButtons.forEach(button => {
             calculatorValue.innerHTML = operator;
             calculator.push(operator);
             currentValue = '';
-            console.log(calculator);
             break
         }
     })
@@ -76,24 +67,20 @@ operatorButtons.forEach(button => {
 );
 
 equalsButton.addEventListener('click', button => {
-    console.log(calculator);
     calculator.push(currentValue)
     let calculate = eval(calculator.join(''));
-    console.log(calculate);
     calculatorValue.innerHTML = calculate;
     currentValue = '';
     calculator = [];
 })
 
 deleteButton.addEventListener('click', button => {
-    console.log(currentValue);
     currentValue = currentValue.slice(0, -1);
     calculatorValue.innerHTML = currentValue;
     if (currentValue === ''){
         console.log('empty')
         calculatorValue.innerHTML = 0;
     }
-    console.log(currentValue);
 })
 
 resetButton.addEventListener('click', button => {
@@ -101,7 +88,4 @@ resetButton.addEventListener('click', button => {
     currentValue = '';
     calculator = [];
     calculatorValue.innerHTML = '0000';
-    console.log(currentValue);
-    console.log(previousValue);
-    console.log(calculator);
 })
